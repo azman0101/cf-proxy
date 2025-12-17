@@ -4,3 +4,7 @@ compatibility_date = "2023-12-01"
 
 [observability]
 enabled = true
+
+[[kv_namespaces]]
+binding = "PROXY_CONFIG"
+id = "YOUR_KV_NAMESPACE_ID"
