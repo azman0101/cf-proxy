@@ -22,19 +22,8 @@ export default {
 
     // Retrieve password from KV
     let password = null;
-    if (env.PROXY_CONFIG) {
-        password = await env.PROXY_CONFIG.get("PROXY_PASSWORD");
-    }
-
-    if (!password) {
-        // Fallback or error if KV is not configured or key is missing
-        // For safety, we can return 500 or just fail auth.
-        // Let's assume there is a fallback env var if KV fails or is empty,
-        // or just fail. Given the request is to REPLACE, we should rely on KV.
-        // However, user might have env var as well.
-        // Let's check env.PROXY_PASSWORD as a backup or initial value if KV is missing?
-        // "Remplacer const PROXY_PASSWORD par un binding kv" -> Remove const.
-        password = env.PROXY_PASSWORD || "defaultPasswordChangeMe";
+    if (env.KV) {
+        password = await env.KV.get("PROXY_PASSWORD");
     }
 
     const expectedAuth = "Basic " + btoa(`${username}:${password}`);
