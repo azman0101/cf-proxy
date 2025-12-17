@@ -1,0 +1,10 @@
+name = "cf-proxy"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+[observability]
+enabled = true
+
+[[kv_namespaces]]
+binding = "KV"
+id = "0dee2348ff7542bb97f0394b5a203678"
